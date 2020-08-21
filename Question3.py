@@ -11,7 +11,8 @@ def calculate_points(employee_dic):
     calls_pts = employee_dic['calls']*10
     meetings_pts = employee_dic['meetings']*30
     sale_pts = employee_dic['sales']*100
-    bonus = 100 if((employee_dic['calls']>150)|(employee_dic['meetings']>20)|(employee_dic['sales']>5)) else 0
+    bonus = 100*sum([(employee_dic['calls']>150),(employee_dic['meetings']>20),(employee_dic['sales']>5)])
+
     employee_dic['score'] = calls_pts + meetings_pts + sale_pts + bonus
 
 
