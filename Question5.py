@@ -22,6 +22,7 @@ def assign_random_places_to_students():
     dic_seats = {}
     for s, p in zip(shuffle_students(), create_places()):
         dic_seats[s] = p
+    print(dic_seats)
     return dic_seats
 
 def not_in_window(student, dic_places):
@@ -56,4 +57,18 @@ def seat_arrange(s_not_window ='', s_not_in_back=''):
 sa = seat_arrange(s_not_window='Carl', s_not_in_back='Malin')
 
 for key in sa:
-    print(key + ' seated ' +sa[key])
+    print(key + ' seated ' + sa[key])
+
+
+
+### TEST Carl to be not in window
+print('TEST1')
+test = {'Lene': 'R0S0', 'Camila': 'R0S1', 'Osama': 'R0S2', 'Salam': 'R1S0', 'Kaja': 'R1S1', 'Martin': 'R1S2', 'Helene': 'R2S0', 'Malin': 'R2S1', 'Carl': 'R2S2'}
+print(test)
+print(not_in_window('Carl', test))
+print("####")
+### TEST Carl to be not in back
+print("Test2")
+test = {'Lene': 'R0S0', 'Camila': 'R0S1', 'Osama': 'R0S2', 'Salam': 'R1S0', 'Kaja': 'R1S1', 'Martin': 'R1S2', 'Helene': 'R2S0', 'Malin': 'R2S1', 'Carl': 'R2S2'}
+print(test)
+print(not_in_back('Carl', test))
