@@ -14,7 +14,7 @@ def create_places():
 
 #Shuffle the students
 def shuffle_students():
-    students = ['Camila', 'Malin', 'Lene', 'Helene', 'Kaja', 'Martin', 'Osama', 'Salam', 'Carl']
+    students = ['Camila', 'Malin ', 'Lene  ', 'Helene', 'Kaja  ', 'Martin', 'Osama ', 'Salam ', 'Carl  ']
     random.shuffle(students)
     return students
 
@@ -22,7 +22,6 @@ def assign_random_places_to_students():
     dic_seats = {}
     for s, p in zip(shuffle_students(), create_places()):
         dic_seats[s] = p
-    print(dic_seats)
     return dic_seats
 
 def not_in_window(student, dic_places):
@@ -50,25 +49,45 @@ def not_in_back(student, dic_places):
 #do the magic
 def seat_arrange(s_not_window ='', s_not_in_back=''):
     assign = assign_random_places_to_students()
-    assign = not_in_back(s_not_in_back, assign)
-    assign = not_in_window(s_not_window, assign)
+    try:
+        assign = not_in_back(s_not_in_back, assign)
+    except: pass
+    
+    try:
+        assign = not_in_window(s_not_window, assign)
+    except: pass
+
     return assign
 
 sa = seat_arrange(s_not_window='Carl', s_not_in_back='Malin')
 
-for key in sa:
-    print(key + ' seated ' + sa[key])
+# for key in sa:
+#     print(key + ' seated ' + sa[key])
 
 
+def print_matrix(dic_places):
+    row0 = [None, None, None]
+    row1 = [None, None, None]
+    row2 = [None, None, None]
+    matrix = [row0, row1, row2]
+    for key in dic_places:
+        matrix[int(dic_places[key][1])][int(dic_places[key][3])] = key
+    print('#####  Kristoffer/Snore  #####\n')
+    for row in matrix:
+        print(str(row) + '  W')
 
-### TEST Carl to be not in window
-print('TEST1')
-test = {'Lene': 'R0S0', 'Camila': 'R0S1', 'Osama': 'R0S2', 'Salam': 'R1S0', 'Kaja': 'R1S1', 'Martin': 'R1S2', 'Helene': 'R2S0', 'Malin': 'R2S1', 'Carl': 'R2S2'}
-print(test)
-print(not_in_window('Carl', test))
-print("####")
-### TEST Carl to be not in back
-print("Test2")
-test = {'Lene': 'R0S0', 'Camila': 'R0S1', 'Osama': 'R0S2', 'Salam': 'R1S0', 'Kaja': 'R1S1', 'Martin': 'R1S2', 'Helene': 'R2S0', 'Malin': 'R2S1', 'Carl': 'R2S2'}
-print(test)
-print(not_in_back('Carl', test))
+
+# ### TEST Carl to be not in window
+# print('TEST1')
+# test = {'Lene': 'R0S0', 'Camila': 'R0S1', 'Osama': 'R0S2', 'Salam': 'R1S0', 'Kaja': 'R1S1', 'Martin': 'R1S2', 'Helene': 'R2S0', 'Malin': 'R2S1', 'Carl': 'R2S2'}
+# print_matrix(test)
+# print_matrix(not_in_window('Carl', test))
+# print("####")
+# ### TEST Carl to be not in back
+# print("Test2")
+# test = {'Lene': 'R0S0', 'Camila': 'R0S1', 'Osama': 'R0S2', 'Salam': 'R1S0', 'Kaja': 'R1S1', 'Martin': 'R1S2', 'Helene': 'R2S0', 'Malin': 'R2S1', 'Carl': 'R2S2'}
+# print_matrix(test)
+# print_matrix(not_in_back('Carl', test))
+
+print("###RANDOM SEATS OF THE DAY#####\n\n")
+print_matrix(seat_arrange())
