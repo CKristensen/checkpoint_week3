@@ -1,9 +1,7 @@
 def fraud_detection(customers, salary, taxes):
   fraud_list = []
   for c, s, t in zip(customers, salary, taxes):
-
-    tax_perc = t/s
-    if((s >555000)&(tax_perc < 0.3)):
+    if((s >555000)&(t/s < 0.3)):
       fraud_list.append(c)
   return fraud_list
 
