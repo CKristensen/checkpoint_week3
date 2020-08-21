@@ -12,7 +12,7 @@ print('######2B#########')
 # #2b
 import re
 def to_snake_case(text):
-    if(re.search(r'\s', text) != []):
+    if(" " not in text):
         return '_'.join(re.findall(r"[A-Z][a-z]*", text)).lower()    
     raise Exception("wrong format dude! Try again")
        
